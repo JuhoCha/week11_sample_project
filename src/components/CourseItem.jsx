@@ -22,6 +22,13 @@ export default function CourseItem({ course, onDelete, onToggle }) {
       </div>
       <div className="actions">
         <button
+          className="btn secondary" /*버튼으로 onToggle 함수 호출*/
+          type="button"
+          onClick={() => onToggle(course.id)}
+        >
+          {course.completed ? "Undo" : "Complete"}
+        </button>
+        <button
           className="btn danger"
           type="button"
           onClick={() => onDelete(course.id)}
