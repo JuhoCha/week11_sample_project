@@ -5,11 +5,11 @@ export default function App() {
     <main className="page">
       <header className="hero">
         <div>
-          <p className="topline">OPEN SOURCE STUDIO · WEEK 11</p>
-          <h1>My Course Manager</h1>
-          <p className="subtitle">React Component, Props & State Practice</p>
+          <p className="topline">오소스 2026-2 01분반</p>
+          <h1>Juho's Course Manager</h1>
+          <p className="subtitle">React로 만든 todo 목업</p>
         </div>
-        <span className="tag">STUDENT STARTER</span>
+        <span className="tag">끝까지 화이팅</span>
       </header>
       <CourseList />
       <footer className="bottom">

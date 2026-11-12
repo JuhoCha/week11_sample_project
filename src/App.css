@@ -29,7 +29,7 @@ body {
   font-size: 12px;
   letter-spacing: 0.16em;
   font-weight: 800;
-  color: #f79728;
+  color: #f79728; /*주황색으로 변경*/
   text-transform: uppercase;
   margin: 0 0 8px;
 }
@@ -46,14 +46,14 @@ body {
   margin: 0 0 9px;
 }
 .subtitle {
-  color: #ba975a;
+  color: #ba975a; /*연한 주황색으로 변경*/
   margin: 0;
   font-size: 15px;
 }
 .tag {
   border-radius: 999px;
   padding: 8px 12px;
-  color: #f3a32b;
+  color: #f3a32b; /*주황색으로 변경*/
   background: #e6edfe;
   font-size: 12px;
   font-weight: 700;

@@ -2,6 +2,9 @@ import { useState } from "react";
 import CourseItem from "./CourseItem.jsx"; // CourseItem 컴포넌트를 불러옴
 import { initialCourses } from "../data/courses.js"; // 초기 과목 데이터를 불러옴
 
+//addCourse라는 const 만들어서 newName이라는 state만들고 trim으로 공백 확인하고 공백이면 과목 입력  
+//일단 버튼 만드들어서 이벤트로 업데이트 하는 기능 만들고
+
 export default function CourseList() {
   // [제공] 초기 배열을 useState로 관리합니다.
   const [courses, setCourses] = useState(initialCourses);
@@ -17,6 +20,21 @@ export default function CourseList() {
   function handleAdd(event) {
     event.preventDefault();
     // TODO: 빈 입력 검사, 새 과목 객체 생성, setCourses 호출, 입력창 초기화
+    const addCourse = (newName) => {
+      if (!newName.trim()) {
+        alert("과목명을 입력해주세요.");
+        return;
+      }
+      const newCourse = {
+        id: Date.now(),
+        name: newName,
+        category: "General Elective",
+        completed: false
+      };
+      setCourses((previous) => [...previous, newCourse]);
+      setNewName("");
+    };
+    addCourse(newName);
   }
 
   // TODO 2 (필수): 완료 상태 변경 기능을 구현하세요.

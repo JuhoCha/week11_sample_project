@@ -1,5 +1,5 @@
 // 초기 데이터는 앱을 새로고침할 때 다시 사용됩니다. (DB/localStorage 미사용)
-export const initialCourses = [
+export const initialCourses = [ //초기 과목 데이터인데 실제 듣는 과목들로 추가. 
   { id: 1, name: 'Open Source Studio', category: 'Major', completed: false },
   { id: 2, name: 'ERC', category: 'General Elective', completed: true },
   { id: 3, name: 'System Programming', category: 'Major', completed: false },
