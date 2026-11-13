@@ -55,7 +55,7 @@ Installation: 설치·실행 방법 및 실행 화면
 - git clone, npm install, npm run dev
 - localhost:5173
 - Node.js 20.19+ 또는 22.12+ 권장.
-- 실행화면:
+- 실행화면: ![실행 화면](oss11addA.png)
 
 
 Source Code Exploration: 주요 파일 3개, Component와 Props 관계, useState 및 Event 분석, 주요 코드 2개 설명
@@ -63,9 +63,66 @@ Source Code Exploration: 주요 파일 3개, Component와 Props 관계, useState
 - Compoenet와 Props의 관계:
 
 Customizing: 수정한 데이터, 텍스트, 스타일 및 파일명
+- App.css에서 파란색이던 텍스트를 주황색으로, 체크박스 색상 변경, delete 변경.
+- index.html에서 juho's 추가해 이름 변경
+
 Feature Extension: 구현한 기능 2개 이상, 주요 코드 및 동작 결과
+- add 해서 과목 추가하는 기능
+function handleAdd(event) {
+    event.preventDefault(); //jsx는 자동으로 false를 거르지 않아서 preventDefault 꼭 해줘야 한다.
+    // TODO: 빈 입력 검사, 새 과목 객체 생성, setCourses 호출, 입력창 초기화
+    const addCourse = (newName) => {
+      if (!newName.trim()) {
+        alert("과목명을 입력해주세요.");
+        return;
+      }
+      const newCourse = {
+        id: Date.now(),
+        name: newName,
+        category: "General Elective",
+        completed: false
+      };
+      setCourses((previous) => [...previous, newCourse]);
+      setNewName("");
+    };
+    addCourse(newName);
+  }
+- 결과
+![전](oss11addA.png)
+![후](oss11addB.png)
+
+- complete했는지 체크하는 기능
+function handleToggle(id) { //부모 toggle
+    // TODO: map과 spread(...)를 사용하여 해당 id의 completed를 반전
+    setCourses((previous) =>
+      previous.map((course) =>
+        course.id === id ? { ...course, completed: !course.completed } : course //... 으로 course 불러오고
+      ) //?는 if else 문이라서 completed
+    ); //jsx에서는 빈칸이 false로 인식됨.
+  }
+- 결과
+![완료 체크](oss11complete.png)
+
+- filter로 완료, 미완료 구분하는 기능
+const filteredCourses = courses.filter((course) => {
+    if (filter === "all") return true;
+    if (filter === "completed") return course.completed;
+    if (filter === "incomplete") return !course.completed;
+    return true;
+  });
+- 결과
+![필터](oss11Filter.png)
+
 Deployment: 실제 접근 가능한 Vercel URL
+
 Weekly Review:
 새롭게 배운 내용 3가지
+1.
+2.
+3.
+
 어려웠던 점과 해결 방법
+- 기호와 처음 보는 개념들이 혼재되어 있어 리딩하는데 어려웠고, 그나마 프리티어로 정렬하고, 하나하나 import따라가며 읽고, README를 읽으며 하나하나 공부하다 보니 해결할 수 있었습니다.
+
 AI 활용 내용 및 느낀 점
+- AI를 통해 실행이 안될때 잘못되거나 빠진 문법이 있는지 검사해달라고 했습니다. 개념적인 부분과 예시는 velog를 많이 참고했습니다. 확실히 익숙하지 않은 개념이다 보니 왜 교수님께서 ()=> 이런 모양에 익숙해 지라고 하셨는지 알 수 있는 시간이었습니다. 또한 위에서 말헀지만 ?, ! 이런 기호들을 리딩하기 위해서는 개념을 알아야 하기에 공부하고 코드를 짜는데 어려움을 겪었습니다.

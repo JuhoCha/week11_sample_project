@@ -9,6 +9,7 @@ export default function CourseList() {
   // [제공] 초기 배열을 useState로 관리합니다.
   const [courses, setCourses] = useState(initialCourses);
   const [newName, setNewName] = useState("");
+  const [filter, setFilter] = useState("all"); //선택: 필터링 기능 구현.
 
   // [제공] 삭제 기능: filter로 새 배열을 만들어 업데이트합니다.
   function handleDelete(id) {
@@ -29,7 +30,7 @@ export default function CourseList() {
         id: Date.now(),
         name: newName,
         category: "General Elective",
-        completed: false
+        completed: false,
       };
       setCourses((previous) => [...previous, newCourse]);
       setNewName("");
@@ -38,14 +39,26 @@ export default function CourseList() {
   }
 
   // TODO 2 (필수): 완료 상태 변경 기능을 구현하세요.
-  function handleToggle(id) { //부모 toggle
+  function handleToggle(id) {
+    //부모 toggle
     // TODO: map과 spread(...)를 사용하여 해당 id의 completed를 반전
-    setCourses((previous) =>
-      previous.map((course) =>
-        course.id === id ? { ...course, completed: !course.completed } : course //... 으로 course 불러오고
-      ) //?는 if else 문이라서 completed
+    setCourses(
+      (previous) =>
+        previous.map(
+          (course) =>
+            course.id === id
+              ? { ...course, completed: !course.completed }
+              : course, //... 으로 course 불러오고
+        ), //?는 if else 문이라서 completed
     ); //jsx에서는 빈칸이 false로 인식됨.
   }
+
+  const filteredCourses = courses.filter((course) => {
+    if (filter === "all") return true;
+    if (filter === "completed") return course.completed;
+    if (filter === "incomplete") return !course.completed;
+    return true;
+  });
 
   const doneCount = courses.filter((course) => course.completed).length;
 
@@ -82,22 +95,51 @@ export default function CourseList() {
             + Add Course
           </button>
         </form>
+        <div className="filter-group" aria-label="과목 필터">
+          <button
+            type="button"
+            className={filter === "all" ? "btn small active" : "btn small"}
+            onClick={() => setFilter("all")}
+          >
+            전체
+          </button>
+          <button
+            type="button"
+            className={
+              filter === "completed" ? "btn small active" : "btn small"
+            }
+            onClick={() => setFilter("completed")}
+          >
+            완료
+          </button>
+          <button
+            type="button"
+            className={
+              filter === "incomplete" ? "btn small active" : "btn small"
+            }
+            onClick={() => setFilter("incomplete")}
+          >
+            진행 중
+          </button>
+        </div>
         <div className="list-head">
           <span>COURSE</span>
           <span>CATEGORY</span>
           <span>ACTIONS</span>
         </div>
-        {courses.length === 0 && (
+        {filteredCourses.length === 0 && (
           <div className="empty">등록된 과목이 없습니다.</div>
         )}
-        {courses.map((course /*CourseItem 컴포넌트를 반복적으로 부름. */) => (
-          <CourseItem
-            key={course.id}
-            course={course}
-            onDelete={handleDelete}
-            onToggle={handleToggle}
-          />
-        ))}
+        {filteredCourses.map(
+          (course /*CourseItem 컴포넌트를 반복적으로 부름. */) => (
+            <CourseItem
+              key={course.id}
+              course={course}
+              onDelete={handleDelete}
+              onToggle={handleToggle}
+            />
+          ),
+        )}
       </section>
     </>
   );

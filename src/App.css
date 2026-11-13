@@ -142,11 +142,11 @@ body {
   font-family: inherit;
 }
 .btn.primary {
-  background: #496fd3;
+  background: #f3a32b;/*주황색으로 변경*/
   color: white;
 }
 .btn.primary:hover {
-  background: #365bb7;
+  background: #efa83d;/*주황색으로 변경*/
 }
 .btn.secondary {
   background: #edf1f8;
@@ -157,7 +157,7 @@ body {
 }
 .btn.danger {
   background: #fff1f0;
-  color: #c84f4b;
+  color: #c84bc2; /*핑크로 변경*/
   padding: 8px 11px;
 }
 .btn.danger:hover {
@@ -235,7 +235,7 @@ body {
   gap: 6px;
 }
 .check {
-  accent-color: #4c75d1;
+  accent-color: #f63416; /*체크박스 색상 변경*/
   width: 17px;
   height: 17px;
   cursor: pointer;
