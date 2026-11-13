@@ -47,6 +47,7 @@ npm run dev
 > 교육 목적의 로컬 State 앱입니다. 서버 API 및 데이터베이스는 사용하지 않습니다.
 
 22400719 차주호
+https://github.com/2026-2-OSS/assign11-c01-22400719.git
 
 Project Information: 프로젝트 소개, 주요 기능 및 원본 Sample Project URL
 - 프로젝트는 react 연습을 위한 todo 앱 입니다. 주요 기능으로는 과목 추가, 삭제, 완료 표시 등이 있습니다.
@@ -62,11 +63,16 @@ Installation: 설치·실행 방법 및 실행 화면
 
 Source Code Exploration: 주요 파일 3개, Component와 Props 관계, useState 및 Event 분석, 주요 코드 2개 설명
 - 주요파일 3개: CourseItem.jsx, CourseList.jsx, courses.js
-- Compoenet와 Props의 관계:
+
+- Compoenet와 Props의 관계: CourseItem이 자식이고, CourseList는 그 자식의 요소를 이용한다. 호출할때만 불러서 사용한다. props에 속성을 넣으면 Component에서 가져온다.
+
+- useState 및 Event 분석: useState는 course, newName, filter을 저장하고, course와 setCourse를 해주는 이유는 react에서 저장 방식이 다르기 때문에 직접 수정해도 바뀌지 않음. 그래서 setCourse라고 따로 만들어준다. event는 React에서 onClick처럼 개별의 문법을 가지고 있고, false를 반환해도 기본 동작 반환이 불가. 그리고 add, complete 그리고 filter라는 이벤트를 실행할 때 onSubmit, onChange, onClick라는 변수 사용함.
 
 Customizing: 수정한 데이터, 텍스트, 스타일 및 파일명
 - App.css에서 파란색이던 텍스트를 주황색으로, 체크박스 색상 변경, delete 변경.
 - index.html에서 juho's 추가해 이름 변경
+- CourseItem.jsx에서 완료 버튼 만들었음
+- filter로 완료 미완료 구분하는 기능도 만듦
 
 Feature Extension: 구현한 기능 2개 이상, 주요 코드 및 동작 결과
 - add 해서 과목 추가하는 기능
