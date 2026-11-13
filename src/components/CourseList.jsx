@@ -2,7 +2,7 @@ import { useState } from "react";
 import CourseItem from "./CourseItem.jsx"; // CourseItem 컴포넌트를 불러옴
 import { initialCourses } from "../data/courses.js"; // 초기 과목 데이터를 불러옴
 
-//addCourse라는 const 만들어서 newName이라는 state만들고 trim으로 공백 확인하고 공백이면 과목 입력  
+//addCourse라는 const 만들어서 newName이라는 state만들고 trim으로 공백 확인하고 공백이면 과목 입력
 //일단 버튼 만드들어서 이벤트로 업데이트 하는 기능 만들고
 
 export default function CourseList() {
@@ -18,7 +18,7 @@ export default function CourseList() {
 
   // TODO 1 (필수): 과목 추가 기능을 구현하세요.
   function handleAdd(event) {
-    event.preventDefault();
+    event.preventDefault(); //jsx는 자동으로 false를 거르지 않아서 preventDefault 꼭 해줘야 한다.
     // TODO: 빈 입력 검사, 새 과목 객체 생성, setCourses 호출, 입력창 초기화
     const addCourse = (newName) => {
       if (!newName.trim()) {
@@ -38,13 +38,13 @@ export default function CourseList() {
   }
 
   // TODO 2 (필수): 완료 상태 변경 기능을 구현하세요.
-  function handleToggle(id) {
+  function handleToggle(id) { //부모 toggle
     // TODO: map과 spread(...)를 사용하여 해당 id의 completed를 반전
     setCourses((previous) =>
       previous.map((course) =>
-        course.id === id ? { ...course, completed: !course.completed } : course
-      )
-    );
+        course.id === id ? { ...course, completed: !course.completed } : course //... 으로 course 불러오고
+      ) //?는 if else 문이라서 completed
+    ); //jsx에서는 빈칸이 false로 인식됨.
   }
 
   const doneCount = courses.filter((course) => course.completed).length;
@@ -70,9 +70,6 @@ export default function CourseList() {
           <h2>Juho's Courses</h2>
           <span className="small-note">{courses.length} courses</span>
         </div>
-        <p className="todo">
-          실습 과제: 아래 Add 버튼과 완료 체크박스의 기능을 직접 구현하세요.
-        </p>
         <form className="add-form" onSubmit={handleAdd}>
           <input
             className="input"
