@@ -50,6 +50,8 @@ npm run dev
 
 Project Information: 프로젝트 소개, 주요 기능 및 원본 Sample Project URL
 - 프로젝트는 react 연습을 위한 todo 앱 입니다. 주요 기능으로는 과목 추가, 삭제, 완료 표시 등이 있습니다.
+- https://github.com/2026-2-OSS/week11_sample_project.git
+
 
 Installation: 설치·실행 방법 및 실행 화면
 - git clone, npm install, npm run dev
@@ -87,6 +89,7 @@ function handleAdd(event) {
     };
     addCourse(newName);
   }
+- 코드 분석: add 버튼 누르면, 비어있는지 확인하고 비어있다면 알람, 아니면 new data추가 그리고 기존의 입력창은 비워줌
 - 결과
 ![전](oss11addA.png)
 ![후](oss11addB.png)
@@ -100,6 +103,7 @@ function handleToggle(id) { //부모 toggle
       ) //?는 if else 문이라서 completed
     ); //jsx에서는 빈칸이 false로 인식됨.
   }
+- 코드 분석: 버튼 클릭하거나 체크 박스 누르면, handletoggle에서 그 과목을 !course로 완료로 바꿈.
 - 결과
 ![완료 체크](oss11complete.png)
 
@@ -110,16 +114,18 @@ const filteredCourses = courses.filter((course) => {
     if (filter === "incomplete") return !course.completed;
     return true;
   });
+- 코드 분석: 버튼을 클릭하면, 조건에 맞는 값은 두고 나머지 값은 안보이게 만든다. 아까와 마찬가지로 !로 완료 미완료를 구분한다.
 - 결과
 ![필터](oss11Filter.png)
 
 Deployment: 실제 접근 가능한 Vercel URL
+https://assign1122400719.vercel.app/
 
 Weekly Review:
 새롭게 배운 내용 3가지
-1.
-2.
-3.
+1. React에서 useState를 사용하는 이유는 state가 바뀌지 않아 객체가 변경되지 않음.
+2. handgleToggle은 진짜 함수이고, ontoggle은 props의 역할을 한다.
+3. React는 form에서 서버로 데이터를 보내 버려서 추가된 과목 바로 보내버리고 새로고침이 된다. 그래서 prevent 해줘야 한다.
 
 어려웠던 점과 해결 방법
 - 기호와 처음 보는 개념들이 혼재되어 있어 리딩하는데 어려웠고, 그나마 프리티어로 정렬하고, 하나하나 import따라가며 읽고, README를 읽으며 하나하나 공부하다 보니 해결할 수 있었습니다.
